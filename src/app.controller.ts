@@ -13,7 +13,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return "Hola mundo"
+    return "Hello World!"
   }
 
   @Get("nuevo")
