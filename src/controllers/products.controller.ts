@@ -1,5 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query,HttpCode,HttpStatus } from '@nestjs/common';
 import { ProductsService } from 'src/services/products.service';
+import { ParseIntPipe } from '@nestjs/common';
+import { CreateProductDto, UpdateProductDto } from 'src/dtos/products.dtos';
 @Controller('products')
 export class ProductsController {
   constructor(private productsServices:ProductsService){}
@@ -13,7 +15,7 @@ export class ProductsController {
   }
 //dinamicos
 @Get(":id")
-getProductoToId(@Param('id') id: number) {
+getProductoToId(@Param('id',ParseIntPipe) id: number) {
   return {
     message:"buscando productos...",
     products:this.productsServices.findOne(id)
@@ -31,14 +33,14 @@ findProduct(
 
   @Post("create")
   @HttpCode(HttpStatus.ACCEPTED)
-  create(@Body()payload:any){
+  create(@Body()payload:CreateProductDto){
     return{
       message:"Accion de crear",
       payload:this.productsServices.create(payload)
     };
   }
   @Put("update/:id")
-  update(@Param("id") id:number,@Body() payload:any){
+  update(@Param("id",ParseIntPipe) id:string,@Body() payload:UpdateProductDto){
 
     return{
       message:"Actualizando producto",
@@ -47,7 +49,7 @@ findProduct(
   }
 
   @Delete("delete/:id")
-  delete(@Param("id") id:number){
+  delete(@Param("id",ParseIntPipe) id:number){
 
     return{
       message:"Eliminando el producto",

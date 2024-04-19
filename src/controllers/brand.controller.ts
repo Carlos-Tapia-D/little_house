@@ -1,11 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 
 @Controller('brand')
 export class BrandController {
     //staticos
   //dinamicos
   @Get(":id")
-  getProductoCategorie(@Param('id') id:number) {
+  getProductoCategorie(@Param('id',ParseIntPipe) id:number) {
     return {
       message:`estas son tus brand ${id}`
     }
@@ -19,7 +19,7 @@ export class BrandController {
   }
 
   @Put("update/:id")
-  update(@Param('id') id:number,@Body() payload:any){
+  update(@Param('id',ParseIntPipe) id:number,@Body() payload:any){
     return{
       message:`Actualizando brand ${id}`,
       payload:payload
@@ -28,7 +28,7 @@ export class BrandController {
 
 
   @Delete("Delete/:id")
-  delete(@Param('id') id:number){
+  delete(@Param('id',ParseIntPipe) id:number){
     return{
       message:`Eliminando brand ${id}`,
     }
