@@ -1,36 +1,32 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { BrandService } from 'src/services/brand.service';
 
 @Controller('brand')
 export class BrandController {
+  constructor(private brandService:BrandService){}
     //staticos
+    @Get("")
+    getBrand() {
+      return this.brandService.getBrands()
+    }
   //dinamicos
   @Get(":id")
-  getProductoCategorie(@Param('id',ParseIntPipe) id:number) {
-    return {
-      message:`estas son tus brand ${id}`
-    }
-  }
+  getBrandxId(@Param('id',ParseIntPipe) id:number) {
+    return this.brandService.findOne(id)}
+
   @Post("create")
   create(@Body() payload:any){
-    return{
-      message:`Creando brand`,
-      payload:payload
-    }
+    return this.brandService.create(payload)
   }
 
   @Put("update/:id")
   update(@Param('id',ParseIntPipe) id:number,@Body() payload:any){
-    return{
-      message:`Actualizando brand ${id}`,
-      payload:payload
-    }
+    return this.brandService.update(payload)
   }
 
 
   @Delete("Delete/:id")
   delete(@Param('id',ParseIntPipe) id:number){
-    return{
-      message:`Eliminando brand ${id}`,
-    }
+    return this.brandService.delete(id)
   }
 }

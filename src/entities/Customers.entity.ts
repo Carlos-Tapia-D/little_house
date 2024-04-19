@@ -3,4 +3,5 @@ export class Customers{
   name:string
   mail:string
   password:string
+  shoppingList:string
 }
