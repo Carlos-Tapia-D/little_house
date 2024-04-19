@@ -4,13 +4,17 @@ import { Product } from 'src/entities/Product.entity';
 
 @Injectable()
 export class ProductsService {
-  private counter=4
+
 private products:Product[]=[
   {id:1,name:"bacardi",description:"algo raro",stock:1,price:10,image:""},
   {id:2,name:"Zote",description:"algo raro",stock:1,price:10,image:""},
   {id:3,name:"Salchicha",description:"algo raro",stock:1,price:10,image:""}
 ]
-
+//este counter es para practicar esta muy mal optimizado
+// private counter=this.products.reduce((max,user)=>{
+//   return user.id > max ? user.id : max
+// },this.products[0].id)
+private counter=this.products[this.products.length-1].id
 getProducts(){
   return this.products
 }
