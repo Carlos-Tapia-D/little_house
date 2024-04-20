@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
-import { BrandService } from 'src/services/brand.service';
+import { BrandService } from 'src/products/services/brand.service';
 
 @Controller('brand')
 export class BrandController {
