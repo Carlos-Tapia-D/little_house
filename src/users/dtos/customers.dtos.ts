@@ -7,11 +7,10 @@ export class CreateCustomer{
   name:string
   @IsString()
   @IsNotEmpty()
-  mail:string
+  lastName:string
   @IsString()
   @IsNotEmpty()
-  password:string
-  shoppingList:string
+  phone:string
 }
 
 export class UpdateCustomer extends PartialType(CreateCustomer){

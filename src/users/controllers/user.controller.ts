@@ -7,25 +7,25 @@ export class UserController {
   constructor(private userService:UserService){}
   @Get()
   getAll(){
-    return ""
+    return this.userService.getAll()
   }
   @Get(":id")
   getFindOne(@Param("id",ParseIntPipe) id:number){
-    return""
+    return this.userService.findOne(id)
   }
 
   @Post("create")
   @HttpCode(HttpStatus.ACCEPTED)
   create(@Body()payload:CreateUser){
-    return ""
+    return this.userService.create(payload)
   }
 
-  @Put("update/:id")
-  update(@Param("id",ParseIntPipe)id:number,@Body()payload:UpdateUser){
-    return{}
+  @Put("update")
+  update(@Body()payload:UpdateUser){
+    return this.userService.update(payload)
   }
   @Delete("delete/:id")
   delete(@Param("id") id:number){
-    return ""
+    return this.userService.delete(id)
   }
 }

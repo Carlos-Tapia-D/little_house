@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/User.entity';
 import { CreateUser, UpdateUser } from '../dtos/user.dtos';
 
@@ -19,10 +19,14 @@ export class UserService {
   findOne(id:number){
     return this.users.find(x=>x.id===id)
   }
+  
   create(payload:CreateUser){
     this.counter=this.counter + 1
     const newUser={id:this.counter,...payload}
     this.users.push(newUser)
+    return {message:"se creo",
+      user:newUser
+    }
   }
 
   update(payLoad:UpdateUser){
@@ -34,5 +38,14 @@ export class UserService {
       return this.users[index]
 
     }else return null
+  }
+  delete(id:number){
+    const index=this.users.findIndex(x=>x.id==id)
+    if(index===-1){
+      throw new NotFoundException(`User ${id} no found`)
+    }else{
+      this.users.splice(index,1)
+    }
+    return true
   }
 }

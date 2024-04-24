@@ -4,28 +4,28 @@ import { CreateCustomer, UpdateCustomer } from '../dtos/customers.dtos';
 
 @Controller('customers')
 export class CustomersController {
-  constructor(private userService:CustomerService){}
+  constructor(private customerService:CustomerService){}
   @Get()
   getAll(){
-    return ""
+    return this.customerService.getAll()
   }
   @Get(":id")
   getFindOne(@Param("id",ParseIntPipe) id:number){
-    return""
+    return this.customerService.findOne(id)
   }
 
   @Post("create")
   @HttpCode(HttpStatus.ACCEPTED)
   create(@Body()payload:CreateCustomer){
-    return ""
+    return this.customerService.create(payload)
   }
 
-  @Put("update/:id")
-  update(@Param("id",ParseIntPipe)id:number,@Body()payload:UpdateCustomer){
-    return{}
+  @Put("update")
+  update(@Body()payload:UpdateCustomer){
+    return this.customerService.update(payload)
   }
   @Delete("delete/:id")
   delete(@Param("id") id:number){
-    return ""
+    return this.customerService.delete(id)
   }
 }
