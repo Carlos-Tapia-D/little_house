@@ -9,10 +9,16 @@ export class UserController {
   getAll(){
     return this.userService.getAll()
   }
+  @Get(":id/orders")
+  getOrders(@Param(`id`,ParseIntPipe) id:number){
+    return this.userService.getOrdersByUser(id)
+
+  }
   @Get(":id")
   getFindOne(@Param("id",ParseIntPipe) id:number){
     return this.userService.findOne(id)
   }
+
 
   @Post("create")
   @HttpCode(HttpStatus.ACCEPTED)

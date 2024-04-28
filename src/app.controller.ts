@@ -12,8 +12,8 @@ export class AppController {
   //rutas staticas
 
   @Get()
-  getHello(): string {
-    return "Hello World!"
+  getHello() {
+    return this.appService.getHello()
   }
 
   @Get("nuevo")
