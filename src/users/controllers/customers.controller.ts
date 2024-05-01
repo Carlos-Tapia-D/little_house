@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { CustomerService } from '../services/customer.service';
-import { CreateCustomer, UpdateCustomer } from '../dtos/customers.dtos';
+import { CreateCustomer, UpdateCustomer } from '../dtos/customers.dto';
 
 @Controller('customers')
 export class CustomersController {

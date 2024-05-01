@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query,HttpCode,HttpStatus } from '@nestjs/common';
 import { ProductsService } from 'src/products/services/products.service';
 import { ParseIntPipe } from '@nestjs/common';
-import { CreateProductDto, UpdateProductDto } from 'src/products/dtos/products.dtos';
+import { CreateProductDto, UpdateProductDto } from 'src/products/dtos/products.dto';
 @Controller('products')
 export class ProductsController {
   constructor(private productsServices:ProductsService){}
